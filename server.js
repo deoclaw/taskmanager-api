@@ -28,6 +28,8 @@ app.use("/", express.static(path.join(__dirname, "/public"))); //serve static fi
 
 app.use("/", require("./routes/root")); //we want routes for our api
 
+app.use("/tasks", require("./routes/taskRoutes.js"));
+
 //404 handler
 app.all("*", (req, res) => {
 	res.status(404);

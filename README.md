@@ -7,6 +7,7 @@ backend for task management system for class
 - :white_check_mark: CRUD operations
 - :white_check_mark: RESTful API
 - :white_check_mark: MongoDB
+- :white_check_mark: MVC
 - :x: Authentication - attempted JWT but how to hook up in Angular???
 
 ## Front-End Repo
