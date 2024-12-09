@@ -15,7 +15,8 @@ connectDB();
 //middleware
 // CORS middleware.
 // Must enable this so this site can be requested from other locations
-app.use(cors(corsOptions));
+//literally have to make it all open???
+app.use(cors());
 
 //built-in
 app.use(express.json()); //lets app receive and parse json so api will work

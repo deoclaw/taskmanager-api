@@ -12,4 +12,4 @@ backend for task management system for class
 
 ## Front-End Repo
 
-Associated front-end repo can be found at
+Associated front-end repo can be found at https://github.com/deoclaw/taskmanager-angular

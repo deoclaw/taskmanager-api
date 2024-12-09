@@ -28,6 +28,16 @@ const getAllTasks = asyncHandler(async (req, res) => {
 	// res.json(tasksWithUser);
 });
 
+const getTask = asyncHandler(async (req, res) => {
+	const id = req?.params?.id;
+	if (!id) {
+		return res.status(400).json({ message: "No task" });
+	}
+	const result = await Task.findOne({ _id: id }).lean();
+	// console.log(result);
+	res.json(result);
+});
+
 const createNewTask = asyncHandler(async (req, res) => {
 	const { title, text, priority = "low" } = req.body;
 
@@ -54,10 +64,11 @@ const createNewTask = asyncHandler(async (req, res) => {
 });
 
 const updateTask = asyncHandler(async (req, res) => {
-	const { id, title, text, priority, completed } = req.body;
+	const id = req?.params?.id; //bc we'll get it thru the url
+	const { title, text, priority } = req.body;
 
 	//confirm user, title, text
-	if (!id || !title || !text || !priority || typeof completed !== "boolean") {
+	if (!id || !title || !text || !priority) {
 		return res.status(400).json({ message: "All fields required" });
 	}
 
@@ -78,7 +89,6 @@ const updateTask = asyncHandler(async (req, res) => {
 	task.title = title;
 	task.text = text;
 	task.priority = priority;
-	task.completed = completed;
 
 	const updatedTask = await task.save();
 
@@ -86,7 +96,7 @@ const updateTask = asyncHandler(async (req, res) => {
 });
 
 const deleteTask = asyncHandler(async (req, res) => {
-	const { id } = req.body;
+	const id = req?.params?.id; //need this to delete
 
 	// Confirm data
 	if (!id) {
@@ -112,4 +122,5 @@ module.exports = {
 	createNewTask,
 	updateTask,
 	deleteTask,
+	getTask,
 };
